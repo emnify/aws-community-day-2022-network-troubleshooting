@@ -51,9 +51,27 @@ resource "aws_vpc_endpoint" "api_gateway" {
   vpc_id             = module.vpc_right.vpc_id
   subnet_ids         = module.vpc_right.private_subnets
   security_group_ids = [aws_security_group.api_gateway.id]
+
+  tags = {
+    Name = "Private API GW"
+  }
 }
 
 resource "aws_security_group" "api_gateway" {
   vpc_id = module.vpc_right.vpc_id
   name   = "api-gateway"
+
+  ingress {
+    from_port   = 80
+    to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  ingress {
+    from_port   = 443
+    to_port     = 443
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
 }
