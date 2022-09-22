@@ -1,6 +1,8 @@
 resource "aws_vpc_peering_connection" "left_middle" {
   vpc_id      = module.vpc_left.vpc_id
   peer_vpc_id = module.vpc_middle.vpc_id
+
+  auto_accept = true
 }
 
 resource "aws_route" "left_to_vpc_peering" {

@@ -1,4 +1,5 @@
 module "vpc_left" {
+
   source  = "terraform-aws-modules/vpc/aws"
   version = "3.14.4"
 
@@ -10,6 +11,7 @@ module "vpc_left" {
 
   enable_dns_hostnames = true
 }
+
 
 module "vpc_middle" {
   source  = "terraform-aws-modules/vpc/aws"
