@@ -1,3 +1,66 @@
+###################################################
+###################################################
+#######
+#######     __     ______   ____
+#######     \ \   / /  _ \ / ___|
+#######      \ \ / /| |_) | |
+#######       \ V / |  __/| |___
+#######        \_/  |_|    \____|
+#######
+###################################################
+###################################################
+
+module "vpc_left" {
+
+  source  = "terraform-aws-modules/vpc/aws"
+  version = "3.14.4"
+
+  name = "left"
+  cidr = "10.1.0.0/16"
+
+  azs             = ["eu-west-1a"]
+  private_subnets = ["10.1.0.0/24"]
+
+  enable_dns_hostnames = true
+}
+
+resource "aws_vpc_endpoint" "left" {
+  for_each = toset(["ssm", "ssmmessages", "ec2messages"])
+
+  vpc_endpoint_type = "Interface"
+  service_name      = "com.amazonaws.${data.aws_region.current.name}.${each.value}"
+
+  private_dns_enabled = true
+
+  vpc_id             = module.vpc_left.vpc_id
+  subnet_ids         = module.vpc_left.private_subnets
+  security_group_ids = [aws_security_group.vpces_left.id]
+}
+
+resource "aws_security_group" "vpces_left" {
+  name   = "trouble-vpce"
+  vpc_id = module.vpc_left.vpc_id
+
+  ingress {
+    protocol    = "tcp"
+    from_port   = 443
+    to_port     = 443
+    cidr_blocks = [module.vpc_left.vpc_cidr_block]
+  }
+}
+
+###################################################
+###################################################
+#######
+#######      ___           _
+#######     |_ _|_ __  ___| |_ __ _ _ __   ___ ___
+#######      | || '_ \/ __| __/ _` | '_ \ / __/ _ \
+#######      | || | | \__ \ || (_| | | | | (_|  __/
+#######     |___|_| |_|___/\__\__,_|_| |_|\___\___|
+#######
+###################################################
+###################################################
+
 module "instance_left" {
   source  = "terraform-aws-modules/ec2-instance/aws"
   version = "4.1.4"
@@ -68,29 +131,4 @@ resource "aws_iam_role" "instance_left" {
 resource "aws_iam_role_policy_attachment" "instance_left" {
   role       = aws_iam_role.instance_left.name
   policy_arn = "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"
-}
-
-resource "aws_vpc_endpoint" "left" {
-  for_each = toset(["ssm", "ssmmessages", "ec2messages"])
-
-  vpc_endpoint_type = "Interface"
-  service_name      = "com.amazonaws.${data.aws_region.current.name}.${each.value}"
-
-  private_dns_enabled = true
-
-  vpc_id             = module.vpc_left.vpc_id
-  subnet_ids         = module.vpc_left.private_subnets
-  security_group_ids = [aws_security_group.vpces_left.id]
-}
-
-resource "aws_security_group" "vpces_left" {
-  name   = "trouble-vpce"
-  vpc_id = module.vpc_left.vpc_id
-
-  ingress {
-    protocol    = "tcp"
-    from_port   = 443
-    to_port     = 443
-    cidr_blocks = [module.vpc_left.vpc_cidr_block]
-  }
 }
