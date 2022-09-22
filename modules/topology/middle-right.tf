@@ -28,9 +28,6 @@ module "tgw_middle_right" {
 
       tgw_routes = [
         {
-          destination_cidr_block = module.vpc_middle.vpc_cidr_block
-        },
-        {
           destination_cidr_block = module.vpc_left.vpc_cidr_block
         },
       ]
@@ -42,12 +39,6 @@ module "tgw_middle_right" {
 
       transit_gateway_default_route_table_association = false
       transit_gateway_default_route_table_propagation = false
-
-      tgw_routes = [
-        {
-          destination_cidr_block = module.vpc_right.vpc_cidr_block
-        },
-      ]
     },
   }
 }
