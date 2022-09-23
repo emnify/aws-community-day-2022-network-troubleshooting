@@ -17,7 +17,7 @@ module "vpc_right" {
   name = "right"
   cidr = "10.3.0.0/16"
 
-  azs             = ["eu-west-1a"]
+  azs             = ["${data.aws_region.current.name}a"]
   private_subnets = ["10.3.0.0/24"]
 
   enable_dns_hostnames = true
