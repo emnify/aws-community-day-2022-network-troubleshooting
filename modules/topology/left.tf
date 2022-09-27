@@ -74,7 +74,26 @@ module "instance_left" {
   vpc_security_group_ids = [aws_security_group.instance_left.id]
 
   iam_instance_profile = aws_iam_instance_profile.instance_left.name
-  user_data            = "while true; do curl http://example.com; sleep 60; done"
+  user_data            = data.template_cloudinit_config.config.rendered
+}
+
+data "template_file" "left-instance-user-data" {
+  template = file("${path.module}/left-instance-user-data.yml.tpl")
+
+  vars = {
+    curl_destination = "example.com"
+  }
+}
+
+data "template_cloudinit_config" "config" {
+  gzip          = false
+  base64_encode = false
+
+  part {
+    content_type = "text/cloud-config"
+    content      = data.template_file.left-instance-user-data.rendered
+    merge_type   = "dict(recurse_list,no_replace)+list(append)"
+  }
 }
 
 resource "aws_security_group" "instance_left" {
