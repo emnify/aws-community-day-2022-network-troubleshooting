@@ -151,3 +151,16 @@ resource "aws_iam_role_policy_attachment" "instance_left" {
   role       = aws_iam_role.instance_left.name
   policy_arn = "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"
 }
+
+resource "aws_vpc_endpoint" "private-link" {
+  service_name = aws_vpc_endpoint_service.middle.service_name
+  vpc_id       = module.vpc_left.vpc_id
+  subnet_ids = [for subnet in module.vpc_left.private_subnets : subnet]
+  vpc_endpoint_type = "Interface"
+
+  auto_accept = true
+
+  tags = {
+    Name = "trouble"
+  }
+}
