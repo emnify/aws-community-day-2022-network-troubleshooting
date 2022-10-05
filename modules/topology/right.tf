@@ -15,10 +15,10 @@ module "vpc_right" {
   version = "3.14.4"
 
   name = "right"
-  cidr = "10.3.0.0/16"
+  cidr = "10.2.0.0/16"
 
   azs             = ["${data.aws_region.current.name}a"]
-  private_subnets = ["10.3.0.0/24"]
+  private_subnets = ["10.2.0.0/24"]
 
   enable_dns_hostnames = true
 }

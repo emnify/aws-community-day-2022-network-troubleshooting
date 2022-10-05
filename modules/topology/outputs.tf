@@ -13,6 +13,14 @@ output "right_apigw_vpce_eni" {
   value       = one(aws_vpc_endpoint.api_gateway.network_interface_ids)
 }
 
+output "right_apigw_dns_entry" {
+  value = aws_vpc_endpoint.api_gateway.dns_entry[0]["dns_name"]
+}
+
 output "transit_gateway_id" {
-  value = module.tgw_middle_right.ec2_transit_gateway_id
+  value = module.tgw.ec2_transit_gateway_id
+}
+
+output "transit_gateway_route_table_id" {
+  value = module.tgw.ec2_transit_gateway_route_table_id
 }
