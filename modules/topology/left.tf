@@ -65,7 +65,7 @@ module "instance_left" {
   source  = "terraform-aws-modules/ec2-instance/aws"
   version = "4.1.4"
 
-  name      = "trouble"
+  name      = "client"
   subnet_id = one(module.vpc_left.private_subnets)
 
   ami                    = data.aws_ami.ubuntu_2004_arm.id
