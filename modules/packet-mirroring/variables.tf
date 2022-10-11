@@ -10,3 +10,9 @@ variable "transit_gateway_id" {
 variable "transit_gateway_route_table_id" {
   type = string
 }
+
+variable "left_vpc_private_route_table_id" {
+  description = "Route table of the left VPC, as we need to tweak its routing table so that mirrored packets are sent to TGW :-/"
+  type        = string
+}
+

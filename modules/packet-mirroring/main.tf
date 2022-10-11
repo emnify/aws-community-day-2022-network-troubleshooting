@@ -14,46 +14,62 @@ resource "aws_ec2_traffic_mirror_filter" "this" {
   network_services = ["amazon-dns"]
 
   tags = {
-    Name = "HTTP and HTTPS"
+    Name = "Gimme everything"
   }
 }
 
 resource "aws_ec2_traffic_mirror_target" "this" {
   description          = ""
   network_interface_id = module.receiver_instance.primary_network_interface_id
-  #  network_load_balancer_arn = ""
-  #  gateway_load_balancer_endpoint_id = ""
 
   tags = {
     Name = local.name
   }
 }
+# unfortunately, Terraform AWS provider is buggy when
+# omitting the protocol (it sets protocol to 0, but should
+# be just left out from the request. Therefor, loop over
+# all interesting protocols
 
+locals {
+  protocols = { icmp = 1, tcp = 6, udp = 17 }
+}
 resource "aws_ec2_traffic_mirror_filter_rule" "out" {
   traffic_mirror_filter_id = aws_ec2_traffic_mirror_filter.this.id
 
-  description            = ""
-  traffic_direction      = "egress"
-  rule_number            = 1
+  for_each = local.protocols
+
+  # who has designed this API?
+  rule_number = 1 + index(values(local.protocols), each.value)
+
+  description       = ""
+  traffic_direction = "egress"
+
   source_cidr_block      = "0.0.0.0/0"
   destination_cidr_block = "0.0.0.0/0"
-  protocol               = 6
+
+  protocol = each.value
   #  destination_port_range {
   #    from_port = 443
   #    to_port = 443
   # }
   rule_action = "accept"
 }
-resource "aws_ec2_traffic_mirror_filter_rule" "in_443" {
+resource "aws_ec2_traffic_mirror_filter_rule" "in" {
   traffic_mirror_filter_id = aws_ec2_traffic_mirror_filter.this.id
+
+  for_each = local.protocols
+
+  # who has designed this API?
+  rule_number = 1 + index(values(local.protocols), each.value)
 
   description       = ""
   traffic_direction = "ingress"
-  rule_number       = 1
 
   source_cidr_block      = "0.0.0.0/0"
   destination_cidr_block = "0.0.0.0/0"
-  protocol               = 6
+
+  protocol = each.value
   #  source_port_range {
   #    from_port = 443
   #    to_port = 443
