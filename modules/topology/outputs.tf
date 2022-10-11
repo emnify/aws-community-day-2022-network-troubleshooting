@@ -8,6 +8,10 @@ output "left_instance_eni" {
   value       = module.instance_left.primary_network_interface_id
 }
 
+output "left_private_route_tables" {
+  value = module.vpc_left.private_route_table_ids
+}
+
 output "right_apigw_vpce_eni" {
   description = "ENI ID of the VPC endpoint of the private API Gateway in the right VPC"
   value       = one(aws_vpc_endpoint.api_gateway.network_interface_ids)
@@ -19,6 +23,10 @@ output "right_apigw_dns_entry" {
 
 output "transit_gateway_id" {
   value = module.tgw.ec2_transit_gateway_id
+}
+
+output "transit_gateway_vcp_attachment_ids" {
+  value = module.tgw.ec2_transit_gateway_vpc_attachment_ids
 }
 
 output "transit_gateway_route_table_id" {
