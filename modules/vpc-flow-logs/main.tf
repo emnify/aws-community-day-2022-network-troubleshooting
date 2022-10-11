@@ -2,7 +2,7 @@
 # Flow Log CloudWatch
 #####################
 resource "aws_cloudwatch_log_group" "flow_log" {
-  name              = "vpc-flow-logs-trouble"
+  name              = "vpc-flow-logs-trouble-${data.aws_region.current.name}"
   retention_in_days = var.flow_log_cloudwatch_log_group_retention_in_days
 
   tags = merge(var.tags)
@@ -12,7 +12,7 @@ resource "aws_cloudwatch_log_group" "flow_log" {
 # Flow Log CloudWatch IAM
 #########################
 resource "aws_iam_role" "vpc_flow_log_cloudwatch" {
-  name_prefix        = "vpc-flow-log-role-"
+  name_prefix        = "vpc-flow-log-role-${data.aws_region.current.name}-"
   assume_role_policy = data.aws_iam_policy_document.flow_log_cloudwatch_assume_role.json
 
   tags = merge(var.tags)

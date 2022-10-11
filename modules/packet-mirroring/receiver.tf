@@ -113,12 +113,12 @@ data "aws_ami" "ubuntu_2004_arm" {
 }
 
 resource "aws_iam_instance_profile" "receiver_instance" {
-  name = local.name
+  name = "${local.name}-${data.aws_region.current.name}"
   role = aws_iam_role.receiver_instance.name
 }
 
 resource "aws_iam_role" "receiver_instance" {
-  name = local.name
+  name = "${local.name}-${data.aws_region.current.name}"
 
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
