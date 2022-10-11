@@ -22,6 +22,13 @@ module "vpc_left" {
   private_subnets = ["10.1.0.0/24"]
 
   enable_dns_hostnames = true
+
+  enable_flow_log                           = true
+  flow_log_cloudwatch_iam_role_arn          = var.vpc_flow_logs_iam_arn
+  flow_log_cloudwatch_log_group_name_prefix = var.vpc_flow_logs_log_group_prefix
+  flow_log_destination_arn                  = var.vpc_flow_logs_log_group_arn
+  flow_log_destination_type                 = "cloud-watch-logs"
+  flow_log_log_format                       = "$${account-id} $${action} $${az-id} $${bytes} $${dstaddr} $${dstport} $${end} $${flow-direction} $${instance-id} $${interface-id} $${log-status} $${packets} $${pkt-dst-aws-service} $${pkt-dstaddr} $${pkt-src-aws-service} $${pkt-srcaddr} $${protocol} $${region} $${srcaddr} $${srcport} $${start} $${sublocation-id} $${sublocation-type} $${subnet-id} $${tcp-flags} $${traffic-path} $${type} $${version} $${vpc-id}"
 }
 
 resource "aws_vpc_endpoint" "left" {
