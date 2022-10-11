@@ -85,7 +85,7 @@ resource "aws_security_group" "receiver_instance" {
     protocol    = "udp"
     from_port   = 4789
     to_port     = 4789
-    cidr_blocks = [module.vpc_receiver.vpc_cidr_block]
+    cidr_blocks = [var.left_vpc_cidr]
   }
 
   egress {
