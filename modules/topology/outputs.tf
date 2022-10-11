@@ -1,3 +1,8 @@
+output "left_vpc_cidr" {
+  description = "VPC CIDR left"
+  value       = module.vpc_left.vpc_cidr_block
+}
+
 output "left_instance_id" {
   description = "Instance ID in the left VPC"
   value       = module.instance_left.id

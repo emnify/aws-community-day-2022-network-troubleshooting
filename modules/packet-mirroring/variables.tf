@@ -3,6 +3,10 @@ variable "mirrored_eni" {
   type        = string
 }
 
+variable "left_vpc_cidr" {
+  type = string
+}
+
 variable "transit_gateway_id" {
   type = string
 }
