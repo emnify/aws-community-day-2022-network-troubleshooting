@@ -12,7 +12,7 @@
                 "metrics": [
                     [ "AWS/TransitGateway", "PacketsIn", "TransitGatewayAttachment", "${tgw_attach_left}", "TransitGateway", "${tgw_id}" ]
                 ],
-                "region": "eu-west-1",
+                "region": "${region}",
                 "period": 300,
                 "title": "Left In"
             }
@@ -29,7 +29,7 @@
                 "metrics": [
                     [ "AWS/TransitGateway", "PacketsOut", "TransitGatewayAttachment", "${tgw_attach_left}", "TransitGateway", "${tgw_id}" ]
                 ],
-                "region": "eu-west-1",
+                "region": "${region}",
                 "period": 300,
                 "title": "Left Out"
             }
@@ -47,7 +47,7 @@
                 ],
                 "view": "timeSeries",
                 "stacked": false,
-                "region": "eu-west-1",
+                "region": "${region}",
                 "period": 300,
                 "title": "Left Drops"
             }
@@ -64,7 +64,7 @@
                 "metrics": [
                     [ "AWS/TransitGateway", "PacketsIn", "TransitGatewayAttachment", "${tgw_attach_right}", "TransitGateway", "${tgw_id}" ]
                 ],
-                "region": "eu-west-1",
+                "region": "${region}",
                 "period": 300,
                 "title": "Right In"
             }
@@ -81,7 +81,7 @@
                 "metrics": [
                     [ "AWS/TransitGateway", "PacketsOut", "TransitGatewayAttachment", "${tgw_attach_right}", "TransitGateway", "${tgw_id}" ]
                 ],
-                "region": "eu-west-1",
+                "region": "${region}",
                 "period": 300,
                 "title": "Right Out"
             }
@@ -99,7 +99,7 @@
                 ],
                 "view": "timeSeries",
                 "stacked": false,
-                "region": "eu-west-1",
+                "region": "${region}",
                 "period": 300,
                 "title": "Right Drops"
             }

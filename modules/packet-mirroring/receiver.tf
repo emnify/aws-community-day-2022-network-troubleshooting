@@ -22,7 +22,7 @@ module "vpc_receiver" {
   name = local.name
   cidr = "10.99.0.0/16"
 
-  azs             = ["eu-west-1a"]
+  azs             = ["${data.aws_region.current.name}a"]
   private_subnets = ["10.99.0.0/24"]
   public_subnets  = ["10.99.1.0/24"]
 
