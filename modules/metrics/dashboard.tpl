@@ -2,7 +2,7 @@
     "widgets": [
         {
             "height": 6,
-            "width": 6,
+            "width": 8,
             "y": 0,
             "x": 0,
             "type": "metric",
@@ -19,9 +19,9 @@
         },
         {
             "height": 6,
-            "width": 6,
+            "width": 8,
             "y": 0,
-            "x": 6,
+            "x": 8,
             "type": "metric",
             "properties": {
                 "view": "timeSeries",
@@ -36,9 +36,9 @@
         },
         {
             "height": 6,
-            "width": 6,
+            "width": 8,
             "y": 0,
-            "x": 12,
+            "x": 16,
             "type": "metric",
             "properties": {
                 "metrics": [
@@ -54,7 +54,7 @@
         },
         {
             "height": 6,
-            "width": 6,
+            "width": 8,
             "y": 6,
             "x": 0,
             "type": "metric",
@@ -71,9 +71,9 @@
         },
         {
             "height": 6,
-            "width": 6,
+            "width": 8,
             "y": 6,
-            "x": 6,
+            "x": 8,
             "type": "metric",
             "properties": {
                 "view": "timeSeries",
@@ -88,9 +88,9 @@
         },
         {
             "height": 6,
-            "width": 6,
+            "width": 8,
             "y": 6,
-            "x": 12,
+            "x": 16,
             "type": "metric",
             "properties": {
                 "metrics": [
