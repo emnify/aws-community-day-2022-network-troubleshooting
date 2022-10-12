@@ -1,3 +1,23 @@
+# Network Troubleshooting
+
+## Introduction
+
+All resources are tagged with `Trouble=yes` so that they can be easily found.
+
+## Topology
+
+The topology consists of two VPCs and some resources inside:
+
+
+## TGW Metrics
+
+A CloudWatch Dashboard for Transit Gateway metrics is automatically created.
+Its URL can be retrieved via
+
+```
+terraform output metrics_dashboard_url
+```
+
 ## Packet Mirroring
 
 ### Usage
