@@ -59,6 +59,8 @@ resource "aws_vpc_endpoint" "api_gateway" {
   subnet_ids         = module.vpc_right.private_subnets
   security_group_ids = [aws_security_group.api_gateway.id]
 
+  private_dns_enabled = true
+
   tags = {
     Name = "Private API GW"
   }
