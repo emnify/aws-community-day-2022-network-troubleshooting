@@ -84,3 +84,7 @@ resource "aws_security_group" "api_gateway" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 }
+
+locals {
+  api_gateway_dns_name = "${aws_api_gateway_rest_api.right.id}-${aws_vpc_endpoint.api_gateway.id}.execute-api.${data.aws_region.current.name}.amazonaws.com"
+}

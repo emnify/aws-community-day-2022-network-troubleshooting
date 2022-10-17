@@ -23,7 +23,7 @@ output "right_apigw_vpce_eni" {
 }
 
 output "right_apigw_dns_entry" {
-  value = aws_vpc_endpoint.api_gateway.dns_entry[0]["dns_name"]
+  value = local.api_gateway_dns_name
 }
 
 output "transit_gateway_id" {

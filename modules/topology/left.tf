@@ -90,7 +90,7 @@ data "cloudinit_config" "this" {
 
   part {
     content_type = "text/cloud-config"
-    content      = templatefile("${path.module}/left-instance-user-data.yml.tpl", { curl_destination = "http://${aws_vpc_endpoint.api_gateway.dns_entry[0]["dns_name"]}" })
+    content      = templatefile("${path.module}/left-instance-user-data.yml.tpl", { curl_destination = local.api_gateway_dns_name })
     merge_type   = "dict(recurse_list,no_replace)+list(append)"
   }
 }
