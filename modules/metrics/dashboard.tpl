@@ -1,7 +1,7 @@
 {
     "widgets": [
         {
-            "height": 6,
+            "height": 5,
             "width": 8,
             "y": 0,
             "x": 0,
@@ -14,11 +14,22 @@
                 ],
                 "region": "${region}",
                 "period": 300,
-                "title": "Left In"
+                "title": "Left In",
+                "yAxis": {
+                    "left": {
+                        "label": "",
+                        "min": 0,
+                        "showUnits": false
+                    },
+                    "right": {
+                        "showUnits": true
+                     }
+                }
             }
         },
+
         {
-            "height": 6,
+            "height": 5,
             "width": 8,
             "y": 0,
             "x": 8,
@@ -27,15 +38,25 @@
                 "view": "timeSeries",
                 "stacked": false,
                 "metrics": [
-                    [ "AWS/TransitGateway", "PacketsOut", "TransitGatewayAttachment", "${tgw_attach_left}", "TransitGateway", "${tgw_id}" ]
+                    [ "AWS/TransitGateway", "PacketsOut", "TransitGatewayAttachment", "${tgw_attach_right}", "TransitGateway", "${tgw_id}" ]
                 ],
                 "region": "${region}",
                 "period": 300,
-                "title": "Left Out"
+                "title": "Right Out",
+                "yAxis": {
+                    "left": {
+                        "label": "",
+                        "min": 0,
+                        "showUnits": false
+                    },
+                    "right": {
+                        "showUnits": true
+                     }
+                }
             }
         },
         {
-            "height": 6,
+            "height": 5,
             "width": 8,
             "y": 0,
             "x": 16,
@@ -49,13 +70,23 @@
                 "stacked": false,
                 "region": "${region}",
                 "period": 300,
-                "title": "Left Drops"
+                "title": "Left Drops",
+                "yAxis": {
+                    "left": {
+                        "label": "",
+                        "min": 0,
+                        "showUnits": false
+                    },
+                    "right": {
+                        "showUnits": true
+                    }
+                 }
             }
         },
         {
-            "height": 6,
+            "height": 5,
             "width": 8,
-            "y": 6,
+            "y": 5,
             "x": 0,
             "type": "metric",
             "properties": {
@@ -66,30 +97,50 @@
                 ],
                 "region": "${region}",
                 "period": 300,
-                "title": "Right In"
+                "title": "Right In",
+                "yAxis": {
+                    "left": {
+                        "label": "",
+                        "min": 0,
+                        "showUnits": false
+                   },
+                   "right": {
+                       "showUnits": true
+                    }
+                }
             }
         },
         {
-            "height": 6,
+            "height": 5,
             "width": 8,
-            "y": 6,
+            "y": 5,
             "x": 8,
             "type": "metric",
             "properties": {
                 "view": "timeSeries",
                 "stacked": false,
                 "metrics": [
-                    [ "AWS/TransitGateway", "PacketsOut", "TransitGatewayAttachment", "${tgw_attach_right}", "TransitGateway", "${tgw_id}" ]
+                    [ "AWS/TransitGateway", "PacketsOut", "TransitGatewayAttachment", "${tgw_attach_left}", "TransitGateway", "${tgw_id}" ]
                 ],
                 "region": "${region}",
                 "period": 300,
-                "title": "Right Out"
+                "title": "Left Out",
+                "yAxis": {
+                    "left": {
+                        "label": "",
+                        "min": 0,
+                        "showUnits": false
+                    },
+                    "right": {
+                        "showUnits": true
+                    }
+                }
             }
         },
         {
-            "height": 6,
+            "height": 5,
             "width": 8,
-            "y": 6,
+            "y": 5,
             "x": 16,
             "type": "metric",
             "properties": {
@@ -101,7 +152,17 @@
                 "stacked": false,
                 "region": "${region}",
                 "period": 300,
-                "title": "Right Drops"
+                "title": "Right Drops",
+                "yAxis": {
+                    "left": {
+                        "label": "",
+                        "min": 0,
+                        "showUnits": false
+                    },
+                    "right": {
+                        "showUnits": true
+                    }
+                }
             }
         }
     ]
