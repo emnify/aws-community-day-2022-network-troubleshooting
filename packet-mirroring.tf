@@ -15,3 +15,14 @@ module "packet_mirroring" {
   transit_gateway_id              = module.topology.transit_gateway_id
   transit_gateway_route_table_id  = module.topology.transit_gateway_route_table_id
 }
+
+# for Aidan Steele's vpcshark
+# https://github.com/aidansteele/vpcshark
+
+module "vpcshark" {
+  source = "./modules/vpcshark"
+
+  # count = 0
+  vpc_id           = module.packet_mirroring.vpc_id
+  public_subnet_id = module.packet_mirroring.public_subnet_ids[0]
+}
