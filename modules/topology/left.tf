@@ -28,7 +28,7 @@ module "vpc_left" {
   flow_log_cloudwatch_log_group_name_prefix = var.vpc_flow_logs_log_group_prefix
   flow_log_destination_arn                  = var.vpc_flow_logs_log_group_arn
   flow_log_destination_type                 = "cloud-watch-logs"
-  flow_log_log_format                       = "$${account-id} $${action} $${az-id} $${bytes} $${dstaddr} $${dstport} $${end} $${flow-direction} $${instance-id} $${interface-id} $${log-status} $${packets} $${pkt-dst-aws-service} $${pkt-dstaddr} $${pkt-src-aws-service} $${pkt-srcaddr} $${protocol} $${region} $${srcaddr} $${srcport} $${start} $${sublocation-id} $${sublocation-type} $${subnet-id} $${tcp-flags} $${traffic-path} $${type} $${version} $${vpc-id}"
+  flow_log_log_format                       = var.vpc_flog_logs_format
 }
 
 resource "aws_vpc_endpoint" "left" {
