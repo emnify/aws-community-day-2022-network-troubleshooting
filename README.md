@@ -2,12 +2,15 @@
 
 ## Introduction
 
-All resources are tagged with `Trouble=yes` so that they can be easily found.
+Topology and resources used for our talk at the AWS Community Day DACH 2022: **Wenn selbst ‘erlaube allen Verkehr von 0.0.0.0/0’ nicht hilft - Verbindungsprobleme in AWS lösen**.
 
 ## Topology
 
 The topology consists of two VPCs and some resources inside:
 
+![Topology with two VPCs](topology.png)
+
+All resources are tagged with `Trouble=yes` so that they can be easily found.
 
 ## TGW Metrics
 
